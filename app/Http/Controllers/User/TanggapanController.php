@@ -25,7 +25,7 @@ class TanggapanController extends Controller
         // dd($pengaduan);
     //     $pengaduan = pengaduan::where('id_pengaduan', $id_pengaduan)->first();
     //     $tanggapan = tanggapan::where('id_pengaduan', $id_pengaduan)->first();
-      
+
         return view('user.tanggapan', compact('pengaduan', 'tanggapan', 'terverifikasi', 'proses', 'selesai'));
     }
 }

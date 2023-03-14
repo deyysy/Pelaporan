@@ -25,11 +25,11 @@
                                 <div class="alert alert-danger">{{ $error }}</div>
                             @endforeach
                         @endif
-            
+
                         @if (Session::has('pengaduan'))
                             <div class="alert alert-{{ Session::get('type') }}">{{ Session::get('pengaduan') }}</div>
                         @endif
-            
+
                         {{-- Form Pelaporan --}}
                         <div class="card">
                             <div class="card-header text-primary fw-bold">
@@ -45,7 +45,7 @@
                                     <div class="form-group mt-2">
                                         <input type="file" name="foto" class="form-control">
                                     </div>
-                                    
+
                                    <button type="submit" class="btn btn-primary mt-4">KIRIM</button>
                                 </form>
                             </div>
@@ -91,8 +91,8 @@
                     </div>
                 </div>
             </div>
-            
-    
+
+
         {{-- Tab  Review --}}
         <div class="row mt-5">
           <div class="col-lg-12 ">
@@ -147,7 +147,7 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                             <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                                         </svg>
-                                    
+
                                     </button>
                                 </form>
                             </div> --}}
@@ -155,12 +155,12 @@
                       </div>
                   </div>
               </div>
-              
+
               <div class="laporan-mid">
                 <div class="judul-laporan">
                   {{ $d->judul_laporan }}
                 </div>
-                <p class="fw-bold">{{ $d->isi_laporan }}</p> 
+                <p class="fw-bold">{{ $d->isi_laporan }}</p>
               </div>
 
               <div class="laporan-bottom">
@@ -168,14 +168,14 @@
                     @if ($d->foto != null)
                     <img src="{{ Storage::url($d->foto) }}" alt="{{ 'Gambar '.$d->judul_laporan }}" class="gambar-lampiran">
                     @endif
-             
-                     @if ($d->tanggapan != null) 
+
+                     @if ($d->tanggapan == null)
                      belum ada tanggapan
                      @else
-                    <p class="mt-3 mb-1">Tanggapan dari : <span></span>{{ $d->nama_petugas }}</p>
-                    <p class="black">{{ $d->tanggapan }}</p>
-                    @endif 
-                  </div>    
+                    <p class="mt-3 mb-1">Tanggapan dari : <span></span>{{ $d->petugas->nama_petugas }}</p>
+                    <p class="black">{{ $d->tanggapan->tanggapan }}</p>
+                    @endif
+                  </div>
               </div>
 
               </div>

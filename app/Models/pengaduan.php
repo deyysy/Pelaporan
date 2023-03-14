@@ -25,9 +25,7 @@ class pengaduan extends Model
         return $this->belongsTo(Masyarakat::class, 'nik', 'nik');
     }
     public function tanggapan(){
-        return $this->belongsTo(tanggapan::class, 'tgl_tanggapan');
+        return $this->belongsTo(tanggapan::class, 'id_pengaduan', 'id_pengaduan');
     }
-    public function petugas(){
-        return $this->belongsTo(petugas::class, 'nama_petugas', 'id_petugas');
-    }
+    
 }

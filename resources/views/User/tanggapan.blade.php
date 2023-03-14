@@ -5,7 +5,7 @@
 
 <section id="get-a-quote" class="get-a-quote">
   <div class="container" data-aos="fade-up">
-        
+
     <div class="content shadow">
         <div class="card">
           <div class="card-header fw-bold">
@@ -35,15 +35,15 @@
         </div>
 
         <div class="card-body">
-        @if ($tanggapan == null) 
+        @if ($tanggapan == null)
           belum ada tanggapan
         @else
           <p class="mt-3 mb-1">Tanggapan dari : <span>{{ $tanggapan = $pengaduan->nama_petugas }}</span></p>
           <p class="black">{{ $tanggapan->tanggapan }}</p>
-        @endif 
+        @endif
         </div>
       </div>
-    </div><br> 
+    </div><br>
     <a href="{{ route('user.laporan') }}" class="btn btn-secondary">Kembali</a>
   </div>
 </section>

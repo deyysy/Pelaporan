@@ -23,15 +23,15 @@ class LaporanController extends Controller
         $hitung = [$terverifikasi, $proses, $selesai];
 
         if ($pengguna == 'saya') {
-            $pengaduan = pengaduan::with('tanggapan', 'petugas', 'user')->orderBy('tgl_pengaduan', 'desc')->get();
-            dd($pengaduan);
+            $pengaduan = pengaduan::with('tanggapan', 'user')->orderBy('tgl_pengaduan', 'desc')->get();
+//dd($pengaduan);
             $asdf = pengaduan::orderBy('created_at', 'desc')->simplePaginate(3);
-            
-            return view('user.laporan.index', ['pengaduan' => $pengaduan, 'hitung' => $hitung, 'pengguna' => $pengguna,'asdf'=> $asdf ]);
+
+            return view('user.laporan.index', ['pengaduan' => $pengaduan, 'hitung' => $hitung, 'pengguna' => $pengguna, 'asdf'=>$asdf]);
         } else {
             $pengaduan = pengaduan::where([['nik', '!=', Auth::guard('masyarakat')->user()->nik], ['status', '!=', '0']])->orderBy('tgl_pengaduan', 'desc')->get();
-
-            return view('user.laporan.index', compact('pengaduan', 'hitung', 'pengguna', 'pages'));
+            $asdf = pengaduan::orderBy('created_at', 'desc')->simplePaginate(3);
+            return view('user.laporan.index', compact('pengaduan', 'hitung', 'pengguna', 'asdf'));
         }
     }
 
@@ -51,7 +51,7 @@ class LaporanController extends Controller
             'isi_laporan' => 'required',
             'foto' => 'nullable',
         ]);
-        
+
 
         $d = pengaduan::findOrFail($id_pengaduan);
 
@@ -60,7 +60,7 @@ class LaporanController extends Controller
         if ($request->hasFile('foto')) {
             // Hapus foto lama dari storage
             // Storage::delete($d->foto);
-    
+
             // Simpan foto baru ke storage dengan menggunakan Storage URL
             $path = $request->file('foto')->store('assets/pengaduan');
             $d->foto = $path;
@@ -79,5 +79,5 @@ class LaporanController extends Controller
 
         return redirect()->route('user.laporan');
     }
-    
+
 }
